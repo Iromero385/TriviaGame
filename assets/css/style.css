@@ -19,3 +19,10 @@ body {
     font-weight: 800;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.questions{
+    background-color: azure;
+    margin: 10px auto;
+}
+#answers{
+    top: 30%;
+}
