@@ -76,10 +76,12 @@ var quizObject = {
     counter:function(){
         quizObject.time--;
         quizObject.displayUpdate();
+        quizObject.questionChecker();
         if(quizObject.time === 0){
-            timeIsUp = true;
-            quizObject.questionChecker();
+            debugger;
+            quizObject.timeIsUp = true;
             clearInterval(intervalId);
+            quizObject.questionChecker();
             quizObject.displayUpdate();
             quizObject.index++;
             quizObject.reset();
@@ -125,6 +127,9 @@ var quizObject = {
        
         if($('#radiobnt1').is(":checked")){
             answer="opt1"
+            quizObject.index++;
+            clearInterval(intervalId);
+            quizObject.runQuestion();
         }
         else if($('#radiobnt2').is(":checked")){
             answer="opt2"
@@ -135,14 +140,13 @@ var quizObject = {
         else if($('#radiobnt4').is(":checked")){
             answer="opt4"
         }
-
-        if(answer === dataArray[quizObject.index].ans){
+        if(answer === dataArray[quizObject.index]["ans"]){
             quizObject.correct++;
         }
-        else if(answer === "" && quizObject.timeIsUp){
+        else if(answer == "" && quizObject.timeIsUp){
              quizObject.unanswer++;   
         }
-        else if(answer !== "" && answer !==dataArray[quizObject.index].ans){
+        else if(answer !== "" && answer !==dataArray[quizObject.index]["ans"]){
             quizObject.incorrect++;
         }
         if(answer !== ""){
