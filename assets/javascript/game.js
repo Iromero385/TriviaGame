@@ -133,12 +133,21 @@ var quizObject = {
         }
         else if($('#radiobnt2').is(":checked")){
             answer="opt2"
+            quizObject.index++;
+            clearInterval(intervalId);
+            quizObject.runQuestion();
         }
         else if($('#radiobnt3').is(":checked")){
             answer="opt3"
+            quizObject.index++;
+            clearInterval(intervalId);
+            quizObject.runQuestion();
         }
         else if($('#radiobnt4').is(":checked")){
             answer="opt4"
+            quizObject.index++;
+            clearInterval(intervalId);
+            quizObject.runQuestion();
         }
         if(answer === dataArray[quizObject.index]["ans"]){
             quizObject.correct++;
