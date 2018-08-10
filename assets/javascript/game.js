@@ -64,7 +64,7 @@ var dataArray = [{q:"What did Joey name his chair?",
 var intervalId;
 var quizObject = {
     timeIsUp: false,
-    time:30,
+    time:15,
     index:0,
     correct:0,
     incorrect:0,
@@ -77,8 +77,8 @@ var quizObject = {
         quizObject.time--;
         quizObject.displayUpdate();
         if(quizObject.time === 0){
-            quizObject.questionChecker();
             timeIsUp = true;
+            quizObject.questionChecker();
             clearInterval(intervalId);
             quizObject.displayUpdate();
             quizObject.index++;
@@ -88,7 +88,7 @@ var quizObject = {
         
     },
     reset:function(){
-        quizObject.time = 30;
+        quizObject.time = 15;
         quizObject.timeIsUp = false;
     },
     displayUpdate:function(){
@@ -122,7 +122,7 @@ var quizObject = {
     questionChecker: function(){
         // checking which answer is selected
         var answer="";
-        debugger;
+       
         if($('#radiobnt1').is(":checked")){
             answer="opt1"
         }
@@ -139,10 +139,10 @@ var quizObject = {
         if(answer === dataArray[quizObject.index].ans){
             quizObject.correct++;
         }
-        else if(answer===""){
+        else if(answer === "" && quizObject.timeIsUp){
              quizObject.unanswer++;   
         }
-        else{
+        else if(answer !== "" && answer !==dataArray[quizObject.index].ans){
             quizObject.incorrect++;
         }
         if(answer !== ""){
