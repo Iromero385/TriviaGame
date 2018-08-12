@@ -11,62 +11,79 @@
   <link rel="stylesheet" href="assets/css/style.css">  
 </head>
 <body>
-        <div class="container">
-                <div class="row" >
+    <div class="background">
+        <div class="container ">
+                <div class="row questionLabel" >
                     <div class="col-md-12" >
-                        <div class="jumbotron jumbotron-fluid mx-auto" >
+                        <div class="jumbotron jumbotron-fluid mx-auto p-0 pb-2 mt-5 bg-light" style="opacity: .8" >
+                                <div class="container finalScore text-center">
+                                  <h1 class="display-4 pt-5 mt-5" id="currentQuestionLabel" >Question 1</h1>
+                                  <p class="lead display-4" id="questionTag" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim dolorem ad iusto omnis corporis recusandae architecto ex quae in! Consequatur similique quaerat alias aliquid magnam ex error architecto nam doloribus?</p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row responseDisplay" hidden >
+                    <div class="col-md-12" >
+                        <div class="jumbotron jumbotron-fluid mx-auto p-0 pb-2 mt-5 bg-success" >
                                 <div class="container finalScore" style="text-align: center;">
-                                  <h1 class="display-4 " id="currentQuestionLabel" >Question 1</h1>
-                                  <p class="lead" id="questionTag" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim dolorem ad iusto omnis corporis recusandae architecto ex quae in! Consequatur similique quaerat alias aliquid magnam ex error architecto nam doloribus?</p>
+                                    <h1 class="display-4  responceHearder finalmessage" id="currentQuestionLabel" >Testing</h1>
                                 </div>
                         </div>
                     </div>
                     
                 </div>
                 <div class="row radiobtn">
-                    <div class="col-md-12">
-                            <div class="form-check questions">
-                                <input class="form-check-input radioSet" id="radiobnt1" type="radio" name="exampleRadios" id="exampleRadios1">
-                                <label class="form-check-label" id="opt1" for="exampleRadios1" >
+                    <div class="col-md-4 mx-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" id="radiobnt1" type="radio" name="exampleRadios" id="exampleRadios1">
+                                <label class="form-check-label h3 bg-light" id="opt1" for="exampleRadios1" >
                                  ???????
                                 </label>
                             </div>
                     </div>
                 </div>
                 <div class="row radiobtn">
-                    <div class="col-md-12">
-                            <div class="form-check questions answers">
-                                <input class="form-check-input radioSet "  id="radiobnt1" type="radio" name="exampleRadios" id="exampleRadios1" value="2" >
-                                <label class="form-check-label" id="opt2" for="exampleRadios1">
+                    <div class="col-md-4 mx-auto">
+                            <div class="form-check">
+                                <input class="form-check-input"  id="radiobnt2" type="radio" name="exampleRadios" id="exampleRadios1" value="2" >
+                                <label class="form-check-label h3 bg-light" id="opt2" for="exampleRadios1">
                                   ???????
                                 </label>
                             </div>
                     </div>
                 </div>
                 <div class="row radiobtn">
-                    <div class="col-md-12">
-                            <div class="form-check questions answers">
+                    <div class="col-md-4 mx-auto">
+                            <div class="form-check">
                                 <input class="form-check-input"  id="radiobnt3" type="radio" name="exampleRadios" id="exampleRadios1" value="3" >
-                                <label class="form-check-label" id="opt3"for="exampleRadios1" >
+                                <label class="form-check-label h3 bg-light" id="opt3"for="exampleRadios1" >
                                   ???????
                                 </label>
                             </div>
                     </div>
                 </div>
                 <div class="row radiobtn">
-                    <div class="col-md-12">
-                            <div class="form-check questions">
+                    <div class="col-md-4 mx-auto">
+                            <div class="form-check">
                                 <input class="form-check-input" id="radiobnt4"  type="radio" name="exampleRadios" id="exampleRadios1" value="4" >
-                                <label class="form-check-label" id="opt4" for="exampleRadios1">
+                                <label class="form-check-label h3 bg-light" id="opt4" for="exampleRadios1">
                                   ???????
                                 </label>
                             </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4 mx-auto">
+                            <a href="#" id="contBnt"  class="btn btn-primary btn-lg active mt-3" role="button" aria-pressed="true">Continue...</a>
+                    </div>
+                </div>
+                <a href="#" id="startOver" class="btn btn-dark btn-lg btn-block active mx-auto" role="button" aria-pressed="true" hidden >StarOver</a>
+                
+         </div>
+    </div>
 
-        </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="assets/javascript/game.js"></script>
 </body>
 </html>

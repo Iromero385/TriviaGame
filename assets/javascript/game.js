@@ -1,5 +1,17 @@
 $(document).ready(function(){
-  // all questions
+$("#contBnt").click(function(event){
+    event.preventDefault();
+    quizObject.answerIsClicked();
+});
+$("#startOver").click(function(event){
+    event.preventDefault();
+    quizObject.index=0;
+    quizObject.runQuestion();
+});
+
+var dataGifCorrect = ["https://78.media.tumblr.com/14d28ae4906c6a203458936e8c6871cc/tumblr_mk0wp9WJc31r3278yo2_400.gif","assets/images/correct2.gif","assets/images/correct3.gif","assets/images/correct4.gif","assets/images/correct5.gif","assets/images/correct6.gif","https://media3.giphy.com/media/6D25rTbyCftDO/200.webp","assets/images/correct8.gif","assets/images/correct9.gif","assets/images/correct10.gif"];
+var dataGifIncorrect = []
+// all questions
 var dataArray = [{q:"What did Joey name his chair?", 
   opt1:"Rosita",
    opt2:"Señorita",
@@ -60,11 +72,10 @@ var dataArray = [{q:"What did Joey name his chair?",
    opt3:"Monica",
    opt4:"Rachel",
   ans:"opt1"} ];
-
 var intervalId;
 var quizObject = {
     timeIsUp: false,
-    time:15,
+    time:10,
     index:0,
     correct:0,
     incorrect:0,
@@ -76,26 +87,21 @@ var quizObject = {
     counter:function(){
         quizObject.time--;
         quizObject.displayUpdate();
-        quizObject.questionChecker();
         if(quizObject.time === 0){
-            debugger;
             quizObject.timeIsUp = true;
             clearInterval(intervalId);
             quizObject.questionChecker();
-            quizObject.displayUpdate();
-            quizObject.index++;
-            quizObject.reset();
-           quizObject.runQuestion();
         }
         
     },
     reset:function(){
-        quizObject.time = 15;
+        quizObject.time = 10;
         quizObject.timeIsUp = false;
     },
     displayUpdate:function(){
-        $("#currentQuestionLabel").attr("style","font-size:96px;")
-        $("#questionTag").attr("style","font-size:48px;")
+        quizObject.toggleResponceDisplay(true);
+        quizObject.toggleQuestionJumbo(false);
+        $("#startOver").attr("hidden",true);
         $("#questionTag").html(dataArray[quizObject.index].q);
         $("#currentQuestionLabel").html("Question "+(quizObject.index+1));
         $("#opt1").text(dataArray[quizObject.index].opt1)
@@ -112,10 +118,10 @@ var quizObject = {
         
     },
     runQuestion: function(){
-        
+        quizObject.reset()
         if(quizObject.index < dataArray.length){
-        quizObject.displayUpdate();
-        quizObject.timer();
+            quizObject.displayUpdate();
+            quizObject.timer();
         }
         else{
             quizObject.finalScore();
@@ -124,62 +130,87 @@ var quizObject = {
     questionChecker: function(){
         // checking which answer is selected
         var answer="";
-       
         if($('#radiobnt1').is(":checked")){
-            answer="opt1"
-            quizObject.index++;
-            clearInterval(intervalId);
-            quizObject.runQuestion();
+            answer="opt1";
         }
         else if($('#radiobnt2').is(":checked")){
             answer="opt2"
-            quizObject.index++;
-            clearInterval(intervalId);
-            quizObject.runQuestion();
         }
         else if($('#radiobnt3').is(":checked")){
-            answer="opt3"
-            quizObject.index++;
-            clearInterval(intervalId);
-            quizObject.runQuestion();
+            answer="opt3";
         }
         else if($('#radiobnt4').is(":checked")){
-            answer="opt4"
-            quizObject.index++;
-            clearInterval(intervalId);
-            quizObject.runQuestion();
+            answer="opt4";
         }
         if(answer === dataArray[quizObject.index]["ans"]){
             quizObject.correct++;
+            quizObject.answerWasCorret(true);
+            setTimeout(quizObject.nextQuestion,3000)
         }
-        else if(answer == "" && quizObject.timeIsUp){
-             quizObject.unanswer++;   
+        else if(answer == ""){
+             quizObject.unanswer++;
+             quizObject.answerWasCorret();
+             setTimeout(quizObject.nextQuestion,3000);   
         }
         else if(answer !== "" && answer !==dataArray[quizObject.index]["ans"]){
             quizObject.incorrect++;
+            quizObject.answerWasCorret(false);
+            quizObject.nextQuestion();
         }
-        if(answer !== ""){
+        
+    },
+    finalScore:function(){
+        quizObject.toggleQuestionJumbo(true);
+        quizObject.toggleResponceDisplay(false);
+        $('#startOver').attr("hidden",false);
+        $(".finalmessage").html("Congratulations! You made it to the end. <br> Here are your scores.")
+        $(".finalmessage").append("<p> Number of Correct answers: " + quizObject.correct+"</p>")
+        $(".finalmessage").append("<p> Number of Incorrect answers: " + quizObject.incorrect+"</p>")
+        $(".finalmessage").append("<p> Number of Unanswer Questions: " + quizObject.unanswer +"</p>")
+        
+    },
+    nextQuestion: function(){
+        quizObject.toggleQuestionJumbo(false);
+        quizObject.toggleResponceDisplay(true)
+        quizObject.resetRadioBnt();
+        quizObject.index++;
+        clearInterval(intervalId);
+        quizObject.runQuestion();
+    },
+    resetRadioBnt:function(){
             $(':radio').each(function () {
                 $(this).removeAttr('checked');
                 $('input[type="radio"]').prop('checked', false);
             })
+    },
+    answerWasCorret:function(state){
+        if(state){
+            quizObject.toggleQuestionJumbo(true);
+            quizObject.toggleResponceDisplay(false);
+            var newGif = $("<img>")
+            newGif.attr("src",dataGifCorrect[quizObject.index]);
+            newGif.attr("style","width:450px");
+            $('.responceHearder').html("<h1> You got it<br>Here is a gif: </h1>");  
+            $('.responceHearder').append(newGif);
+        }
+        else if(state === false){
+        }
+        // for unaswers question we need three choices true, false and everything else.
+        else{
         }
     },
-    // need to add functionallity that moves to next question on click
-    clickOnAnswer: function(){
+    answerIsClicked:function(){
+        quizObject.questionChecker();
+        clearInterval(intervalId); 
     },
-    finalScore:function(){
-        $("#questionTag").empty();
-            $("#currentQuestionLabel").empty();
-            $(".radiobtn").html("");
-            $("#questionTag").html("Congratulations! You made it to the end. <br> Here are your scores.")
-            $(".finalScore").append("<p> Number of Correct answers: " + quizObject.correct+"</p>")
-            $(".finalScore").append("<p> Number of Incorrect answers: " + quizObject.incorrect+"</p>")
-            $(".finalScore").append("<p> Number of Unanswer Questions: " + quizObject.unanswer +"</p>")
+    toggleQuestionJumbo:function(state){
+        $(".questionLabel").attr("hidden",state);
+        $(".radiobtn").attr("hidden",state);
+        $('#contBnt').attr("hidden",state);
+    },
+    toggleResponceDisplay:function(state){
+        $('.responseDisplay').attr("hidden",state);
     }
-
 }
-
 quizObject.runQuestion();
-
 });
