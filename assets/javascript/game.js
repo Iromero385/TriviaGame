@@ -149,13 +149,13 @@ var quizObject = {
         }
         else if(answer == ""){
              quizObject.unanswer++;
-             quizObject.answerWasCorret();
+             quizObject.answerWasCorret(null);
              setTimeout(quizObject.nextQuestion,3000);   
         }
         else if(answer !== "" && answer !==dataArray[quizObject.index]["ans"]){
             quizObject.incorrect++;
             quizObject.answerWasCorret(false);
-            quizObject.nextQuestion();
+            setTimeout(quizObject.nextQuestion,3000);
         }
         
     },
@@ -184,6 +184,7 @@ var quizObject = {
             })
     },
     answerWasCorret:function(state){
+        debugger;
         if(state){
             quizObject.toggleQuestionJumbo(true);
             quizObject.toggleResponceDisplay(false);
@@ -194,9 +195,23 @@ var quizObject = {
             $('.responceHearder').append(newGif);
         }
         else if(state === false){
+            quizObject.toggleQuestionJumbo(true);
+            quizObject.toggleResponceDisplay(false);
+            var newGif = $("<img>")
+            newGif.attr("src","assets/images/incorrect"+(quizObject.index+1)+".gif");
+            newGif.attr("style","width:450px");
+            $('.responceHearder').html("<h1> You miss it<br>But here is a gif: </h1>");  
+            $('.responceHearder').append(newGif);
         }
         // for unaswers question we need three choices true, false and everything else.
         else{
+            quizObject.toggleQuestionJumbo(true);
+            quizObject.toggleResponceDisplay(false);
+            var newGif = $("<img>")
+            newGif.attr("src","assets/images/unanswer"+(quizObject.index+1)+".gif");
+            newGif.attr("style","width:450px");
+            $('.responceHearder').html("<h1> Are you ok?<br>Concetrate Gif for you: </h1>");  
+            $('.responceHearder').append(newGif);
         }
     },
     answerIsClicked:function(){
