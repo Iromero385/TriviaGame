@@ -5,12 +5,14 @@ $("#contBnt").click(function(event){
 });
 $("#startOver").click(function(event){
     event.preventDefault();
+    quizObject.incorrect=0;
+    quizObject.correct=0;
+    quizObject.unanswer=0;
     quizObject.index=0;
     quizObject.runQuestion();
 });
 
 var dataGifCorrect = ["https://78.media.tumblr.com/14d28ae4906c6a203458936e8c6871cc/tumblr_mk0wp9WJc31r3278yo2_400.gif","assets/images/correct2.gif","assets/images/correct3.gif","assets/images/correct4.gif","assets/images/correct5.gif","assets/images/correct6.gif","assets/images/correct7.gif","assets/images/correct8.gif","assets/images/correct9.gif","assets/images/correct10.gif"];
-var dataGifIncorrect = []
 // all questions
 var dataArray = [{q:"What did Joey name his chair?", 
   opt1:"Rosita",
