@@ -77,7 +77,7 @@ var dataArray = [{q:"What did Joey name his chair?",
 var intervalId;
 var quizObject = {
     timeIsUp: false,
-    time:10,
+    time:15,
     index:0,
     correct:0,
     incorrect:0,
@@ -97,7 +97,7 @@ var quizObject = {
         
     },
     reset:function(){
-        quizObject.time = 10;
+        quizObject.time = 15;
         quizObject.timeIsUp = false;
     },
     displayUpdate:function(){
