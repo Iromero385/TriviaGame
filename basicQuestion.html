@@ -13,11 +13,13 @@
 <body>
     <div class="background">
         <div class="container ">
-                <div class="row questionLabel" >
-                    <div class="col-md-12" >
-                        <div class="jumbotron jumbotron-fluid mx-auto p-0 pb-2 mt-5 bg-light" style="opacity: .8" >
+                <div class="row questionLabel my-4" >
+                    <div class="col-md-12 mt-5" >
+                        <div class="jumbotron jumbotron-fluid mx-auto p-0 pb-2 mt-5 bg-light" style="opacity: .8; border-radius:30px" >
                                 <div class="container finalScore text-center">
-                                  <h1 class="display-4 pt-5 mt-5" id="currentQuestionLabel" >Question 1</h1>
+                                  <h1 class="display-4 pt-5 mt-5" id="currentQuestionLabel" style="padding-top:0px !important">
+                                      Question 1
+                                  </h1>
                                   <p class="lead display-4" id="questionTag" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim dolorem ad iusto omnis corporis recusandae architecto ex quae in! Consequatur similique quaerat alias aliquid magnam ex error architecto nam doloribus?</p>
                                 </div>
                         </div>
@@ -25,7 +27,7 @@
                 </div>
                 <div class="row responseDisplay" hidden >
                     <div class="col-md-12" >
-                        <div class="jumbotron jumbotron-fluid mx-auto p-0 pb-2 mt-5" style="background-color:lightblue" >
+                        <div class="jumbotron jumbotron-fluid mx-auto p-0 pb-2 mt-5" style="background-color:lightblue; border-radius:30px" >
                                 <div class="container finalScore" style="text-align: center;">
                                     <h1 class="display-4  responceHearder finalmessage" id="currentQuestionLabel" >Testing</h1>
                                 </div>
@@ -78,7 +80,7 @@
                             <a href="#" id="contBnt"  class="btn btn-primary btn-lg active mt-3" role="button" aria-pressed="true">Continue...</a>
                     </div>
                 </div>
-                <a href="#" id="startOver" class="btn btn-dark btn-lg btn-block active mx-auto" role="button" aria-pressed="true" hidden >StarOver</a>
+                <a href="#" id="startOver" class="btn  btn-lg btn-block active text-dark" role="button" aria-pressed="true" hidden  style="background-color: cadetblue; font-size: 2rem"> <b> Start Over</b></a>
                 
          </div>
     </div>

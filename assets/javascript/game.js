@@ -186,7 +186,7 @@ var quizObject = {
             })
     },
     answerWasCorret:function(state){
-        debugger;
+       
         if(state){
             quizObject.toggleQuestionJumbo(true);
             quizObject.toggleResponceDisplay(false);
