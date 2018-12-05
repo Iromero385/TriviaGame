@@ -9,10 +9,10 @@ We utilize the set time out functions to keep record of time. We started a count
 
 <h2>Future Developments</h2>
 
-*Creating a datebase of questions.
-*Creating user for the site. 
-*Creating categories for different theme questions.
-*Creatig a chat room for users. 
+* Creating a datebase of questions.
+* Creating user for the site. 
+* Creating categories for different theme questions.
+* Creatig a chat room for users. 
 
 <h2> Examples</h2>
 <img src="./assets/images/TriviaIntro.png"/>
